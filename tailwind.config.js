@@ -1,6 +1,6 @@
 module.exports = {
   future: {
-    removeDeprecatedGapUtilies: true,
+    removeDeprecatedGapUtilities: true,
     purgeLayersByDefault: true,
   },
-}
+};
