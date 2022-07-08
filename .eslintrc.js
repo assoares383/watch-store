@@ -3,7 +3,6 @@ module.exports = {
   env: {
     browser: true,
     node: true,
-    es2018: true,
   },
   parser: 'vue-eslint-parser',
   parserOptions: {
