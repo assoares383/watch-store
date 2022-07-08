@@ -9,11 +9,11 @@ const usersSeeder = (server) => {
    * random number of messages and assign to each
    * and every user, making use of relationships.
    */
-  server.createList('user', 10);
+  server.createList('user', 20);
 };
 
 const productsSeeder = (server) => {
-  server.createList('product', 25);
+  server.createList('product', 20);
 };
 
 export default function seeds(server) {

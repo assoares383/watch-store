@@ -11,7 +11,10 @@ export default function routes() {
    * Mirage JS guide on Resource: https://miragejs.com/docs/route-handlers/shorthands#resource-helper
    */
   this.resource('users');
-  this.resource('products');
+  this.resource('product');
+  // this.get('products', () => {
+  //   return new Response(500, {}, 'O Server morreu!');
+  // });
 
   /*
    * From your component use fetch('api/messages?userId=<a user id>')
