@@ -17,7 +17,7 @@ describe('ProductCard - unit', () => {
     server.shutdown();
   });
 
-  it('should macth snapchot', () => {
+  it('should macth snapshot', () => {
     const wrapper = mount(ProductCard, {
       propsData: {
         product: server.create('product', {
@@ -27,7 +27,7 @@ describe('ProductCard - unit', () => {
       },
     });
 
-    expect(wrapper.element).toMatchSnapchot();
+    expect(wrapper.element).toMatchSnapshot();
   });
 
   it('should mount the component', () => {
@@ -40,6 +40,8 @@ describe('ProductCard - unit', () => {
       },
     });
 
+    // eslint-disable-next-line no-console
+    console.log(wrapper.html());
     expect(wrapper.vm).toBeDefined();
     expect(wrapper.text()).toContain('saepe quae et');
     expect(wrapper.text()).toContain('$782.00');
