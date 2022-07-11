@@ -17,33 +17,42 @@ describe('ProductCard - unit', () => {
     server.shutdown();
   });
 
-  it('should macth snapshot', () => {
-    const wrapper = mount(ProductCard, {
-      propsData: {
-        product: server.create('product', {
-          title: 'saepe quae et',
-          price: '$782.00',
-        }),
-      },
+  const mountProductCart = () => {
+    const product = server.create('product', {
+      title: 'nobis nostrum aut',
+      price: '$868.00',
     });
+
+    return {
+      wrapper: mount(ProductCard, {
+        propsData: {
+          product,
+        },
+      }),
+      product,
+    };
+  };
+
+  it('should match snapshot', () => {
+    const { wrapper } = mountProductCart();
 
     expect(wrapper.element).toMatchSnapshot();
   });
 
   it('should mount the component', () => {
-    const wrapper = mount(ProductCard, {
-      propsData: {
-        product: server.create('product', {
-          title: 'saepe quae et',
-          price: '$782.00',
-        }),
-      },
-    });
+    const { wrapper } = mountProductCart();
 
-    // eslint-disable-next-line no-console
-    console.log(wrapper.html());
-    expect(wrapper.vm).toBeDefined();
-    expect(wrapper.text()).toContain('saepe quae et');
-    expect(wrapper.text()).toContain('$782.00');
+    expect(wrapper.text()).toContain('nobis nostrum aut');
+    expect(wrapper.text()).toContain('$868.00');
+  });
+
+  it('should emit the event addToCart with product object when button gets clicked', async () => {
+    const { wrapper, product } = mountProductCart();
+
+    await wrapper.find('button').trigger('click');
+
+    expect(wrapper.emitted().addToCart).toBeTruthy();
+    expect(wrapper.emitted().addToCart.length).toBe(1);
+    expect(wrapper.emitted().addToCart[0]).toEqual([{ product }]);
   });
 });
